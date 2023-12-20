@@ -647,3 +647,6 @@
 2. When implementing order service, use message broker when doing several things:
 - Notify user about order status
 - Update stock to inventory service
+
+3. For message broker implementation, can use this architecture to make sure all messages consumed
+- https://microservices.io/patterns/data/transactional-outbox.html
