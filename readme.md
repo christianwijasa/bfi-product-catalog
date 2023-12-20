@@ -575,6 +575,7 @@
         "sku": "",
         "stock": 10,
         "price": 10000,
+        "image": "",
         "attributes": [
           "key": "value"
         ],
@@ -608,9 +609,9 @@
 | No. | Name   | Description                          |
 |-----|--------|--------------------------------------|
 | 1.  | PRD000 | Unknown error                        |
-| 2.  | PRD300 | Bad request : category not found     |
-| 3.  | PRD301 | Bad request : product already exists |
-| 4.  | PRD302 | Bad request : invalid image          |
+| 2.  | PRD400 | Bad request : category not found     |
+| 3.  | PRD401 | Bad request : product already exists |
+| 4.  | PRD402 | Bad request : invalid image          |
 
 # External API
 
