@@ -635,3 +635,15 @@
   "expiry": "2023-12-31 00.00.00"
 }
 ```
+
+# Notes
+
+1. Basically there are 3 crucial services:
+- Product service (which documented here)
+-- stock in this case should be implemented later in inventory service
+- Order service
+- Inventory service
+
+2. When implementing order service, use message broker when doing several things:
+- Notify user about order status
+- Update stock to inventory service
