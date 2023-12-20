@@ -44,7 +44,8 @@
     ],
     "page": 1,
     "limit": 20,
-    "last": true
+    "total": 100,
+    "last": false
   },
   "error_code": "",
   "message": ""
@@ -346,7 +347,8 @@
     ],
     "page": 1,
     "limit": 20,
-    "last": true
+    "total": 100,
+    "last": false
   },
   "error_code": "",
   "message": ""
