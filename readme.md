@@ -64,9 +64,9 @@
 
 ### Error Codes
 
-| No. | Name   | Description   |
-|-----|--------|---------------|
-| 1.  | CAT000 | Unknown error |
+| No. | Name   | HTTP Status | Description   |
+|-----|--------|-------------|---------------|
+| 1.  | CAT000 | 500         | Unknown error |
 
 ## Create category
 
@@ -117,10 +117,10 @@
 
 ### Error Codes
 
-| No. | Name   | Description                             |
-|-----|--------|-----------------------------------------|
-| 1.  | CAT000 | Unknown error                           |
-| 2.  | CAT200 | Bad request : parent category not found |
+| No. | Name   | HTTP Status | Description                             |
+|-----|--------|-------------|-----------------------------------------|
+| 1.  | CAT000 | 500         | Unknown error                           |
+| 2.  | CAT200 | 400         | Bad request : parent category not found |
 
 ## Update category
 
@@ -173,12 +173,12 @@
 
 ### Error Codes
 
-| No. | Name   | Description                                                                                 |
-|-----|--------|---------------------------------------------------------------------------------------------|
-| 1.  | CAT000 | Unknown error                                                                               |
-| 2.  | CAT300 | Bad request : category not found                                                            |
-| 3.  | CAT301 | Bad request : parent category not found                                                     |
-| 4.  | CAT302 | Bad request : name is required (this only happened if parent category id and name are null) |
+| No. | Name   | HTTP Status | Description                                                                                 |
+|-----|--------|-------------|---------------------------------------------------------------------------------------------|
+| 1.  | CAT000 | 500         | Unknown error                                                                               |
+| 2.  | CAT300 | 400         | Bad request : category not found                                                            |
+| 3.  | CAT301 | 400         | Bad request : parent category not found                                                     |
+| 4.  | CAT302 | 400         | Bad request : name is required (this only happened if parent category id and name are null) |
 
 ## Create bulk categories
 
@@ -235,9 +235,9 @@
 
 ### Error Codes
 
-| No. | Name   | Description   |
-|-----|--------|---------------|
-| 1.  | CAT000 | Unknown error |
+| No. | Name   | HTTP Status | Description   |
+|-----|--------|-------------|---------------|
+| 1.  | CAT000 | 500         | Unknown error |
 
 ## Deactivate category
 
@@ -276,10 +276,10 @@
 
 ### Error Codes
 
-| No. | Name   | Description                      |
-|-----|--------|----------------------------------|
-| 1.  | CAT000 | Unknown error                    |
-| 2.  | CAT500 | Bad request : category not found |
+| No. | Name   | HTTP Status | Description                      |
+|-----|--------|-------------|----------------------------------|
+| 1.  | CAT000 | 500         | Unknown error                    |
+| 2.  | CAT500 | 400         | Bad request : category not found |
 
 # Product API
 
@@ -299,17 +299,17 @@
 
 ### Variants
 
-| No. | Name       | Data Type | Description               |
-|-----|------------|-----------|---------------------------|
-| 1.  | variant_id | UUID      | Variant's ID              |
-| 2.  | sku        | String    | Variant's SKU             |
-| 3.  | stock      | Integer   | Variant's stock           |
-| 4.  | price      | Double    | Variant's price           |
-| 5.  | image      | String    | Variant's image           |
-| 6.  | attributes | Array     | Variant's attributes      |
-| 7.  | created_at | Timestamp | Time variant created      |
-| 8.  | updated_at | Timestamp | Time variant last updated |
-| 9.  | deleted_at | Timestamp | Time variant deleted      |
+| No. | Name       | Data Type | Description                                                                                                 |
+|-----|------------|-----------|-------------------------------------------------------------------------------------------------------------|
+| 1.  | variant_id | UUID      | Variant's ID (this is required if the business will have multiple tenants)                                  |
+| 2.  | sku        | String    | Variant's SKU (this can be primary key and remove variant id if the business only run one stand-alone shop) |
+| 3.  | stock      | Integer   | Variant's stock                                                                                             |
+| 4.  | price      | Double    | Variant's price                                                                                             |
+| 5.  | image      | String    | Variant's image                                                                                             |
+| 6.  | attributes | Array     | Variant's attributes                                                                                        |
+| 7.  | created_at | Timestamp | Time variant created                                                                                        |
+| 8.  | updated_at | Timestamp | Time variant last updated                                                                                   |
+| 9.  | deleted_at | Timestamp | Time variant deleted                                                                                        |
 
 ## Get product list
 
@@ -367,9 +367,9 @@
 
 ### Error Codes
 
-| No. | Name   | Description   |
-|-----|--------|---------------|
-| 1.  | PRD000 | Unknown error |
+| No. | Name   | HTTP Status | Description   |
+|-----|--------|-------------|---------------|
+| 1.  | PRD000 | 500         | Unknown error |
 
 ## Get product variants by IDs
 
@@ -421,10 +421,10 @@
 
 ### Error Codes
 
-| No. | Name   | Description       |
-|-----|--------|-------------------|
-| 1.  | PRD000 | Unknown error     |
-| 2.  | PRD200 | Product not found |
+| No. | Name   | HTTP Status | Description       |
+|-----|--------|-------------|-------------------|
+| 1.  | PRD000 | 500         | Unknown error     |
+| 2.  | PRD200 | 404         | Product not found |
 
 ## Create product
 
@@ -513,12 +513,12 @@
 
 ### Error Codes
 
-| No. | Name   | Description                          |
-|-----|--------|--------------------------------------|
-| 1.  | PRD000 | Unknown error                        |
-| 2.  | PRD300 | Bad request : category not found     |
-| 3.  | PRD301 | Bad request : product already exists |
-| 4.  | PRD302 | Bad request : invalid image          |
+| No. | Name   | HTTP Status | Description                          |
+|-----|--------|-------------|--------------------------------------|
+| 1.  | PRD000 | 500         | Unknown error                        |
+| 2.  | PRD300 | 400         | Bad request : category not found     |
+| 3.  | PRD301 | 400         | Bad request : product already exists |
+| 4.  | PRD302 | 400         | Bad request : invalid image          |
 
 ## Update Product
 
@@ -608,12 +608,12 @@
 
 ### Error Codes
 
-| No. | Name   | Description                          |
-|-----|--------|--------------------------------------|
-| 1.  | PRD000 | Unknown error                        |
-| 2.  | PRD400 | Bad request : category not found     |
-| 3.  | PRD401 | Bad request : product already exists |
-| 4.  | PRD402 | Bad request : invalid image          |
+| No. | Name   | HTTP Status | Description                          |
+|-----|--------|-------------|--------------------------------------|
+| 1.  | PRD000 | 500         | Unknown error                        |
+| 2.  | PRD400 | 400         | Bad request : category not found     |
+| 3.  | PRD401 | 400         | Bad request : product already exists |
+| 4.  | PRD402 | 400         | Bad request : invalid image          |
 
 # External API
 
