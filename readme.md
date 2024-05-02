@@ -1,8 +1,10 @@
-# Category API
+# API Design
 
-## Category Properties
+## Category API
 
-### Categories
+### Category Properties
+
+#### Categories
 
 | No. | Name               | Data Type | Description                |
 |-----|--------------------|-----------|----------------------------|
@@ -13,21 +15,22 @@
 | 5.  | updated_at         | Timestamp | Time category last updated |
 | 6.  | deleted_at         | Timestamp | Time category deleted      |
 
-## Get category list
+### Get category list
 
-### This API is used to get category list. Returns 200 OK even though category is empty
-### Store API response to Redis with request as key. Expiry 1 day
+> [!NOTE]
+> This API is used to get category list. Returns 200 OK even though category is empty
+> Store API response to Redis with request as key. Expiry 1 day
 
 `[GET] /api/v1/category`
 
-### Request
+#### Request
 
 | No. | Name  | Required | Data Type | Description                         |
 |-----|-------|----------|-----------|-------------------------------------|
 | 1.  | page  | FALSE    | Integer   | Page of categories (Default 1)      |
 | 2.  | limit | FALSE    | Integer   | Limit item to retrieve (Default 20) |
 
-### Response
+#### Response
 
 ```json
 {
@@ -52,7 +55,7 @@
 }
 ```
 
-### Error Response
+#### Error Response
 
 ```json
 {
@@ -62,19 +65,20 @@
 }
 ```
 
-### Error Codes
+#### Error Codes
 
 | No. | Name   | HTTP Status | Description   |
 |-----|--------|-------------|---------------|
 | 1.  | CAT000 | 500         | Unknown error |
 
-## Create category
+### Create category
 
-### This API is used to create category
+> [!NOTE]
+> This API is used to create category
 
 `[POST] /api/v1/category`
 
-### Request
+#### Request
 
 | No. | Name               | Required | Data Type | Description          |
 |-----|--------------------|----------|-----------|----------------------|
@@ -88,7 +92,7 @@
 }
 ```
 
-### Response
+#### Response
 
 ```json
 {
@@ -105,7 +109,7 @@
 }
 ```
 
-### Error Response
+#### Error Response
 
 ```json
 {
@@ -115,20 +119,21 @@
 }
 ```
 
-### Error Codes
+#### Error Codes
 
 | No. | Name   | HTTP Status | Description                             |
 |-----|--------|-------------|-----------------------------------------|
 | 1.  | CAT000 | 500         | Unknown error                           |
 | 2.  | CAT200 | 400         | Bad request : parent category not found |
 
-## Update category
+### Update category
 
-### This API is used to update category
+> [!NOTE]
+> This API is used to update category
 
 `[PATCH] /api/v1/category/{category_id}`
 
-### Request
+#### Request
 
 | No. | Name               | Type | Required | Data Type | Description                    |
 |-----|--------------------|------|----------|-----------|--------------------------------|
@@ -144,7 +149,7 @@
 }
 ```
 
-### Response
+#### Response
 
 ```json
 {
@@ -161,7 +166,7 @@
 }
 ```
 
-### Error Response
+#### Error Response
 
 ```json
 {
@@ -171,7 +176,7 @@
 }
 ```
 
-### Error Codes
+#### Error Codes
 
 | No. | Name   | HTTP Status | Description                                                                                 |
 |-----|--------|-------------|---------------------------------------------------------------------------------------------|
@@ -180,13 +185,14 @@
 | 3.  | CAT301 | 400         | Bad request : parent category not found                                                     |
 | 4.  | CAT302 | 400         | Bad request : name is required (this only happened if parent category id and name are null) |
 
-## Create bulk categories
+### Create bulk categories
 
-### This API is used to create multiple categories
+> [!NOTE]
+> This API is used to create multiple categories
 
 `[POST] /api/v1/category/bulk`
 
-### Request
+#### Request
 
 | No. | Name     | Required | Data Type       | Description         |
 |-----|----------|----------|-----------------|---------------------|
@@ -204,7 +210,7 @@
 ]
 ```
 
-### Response
+#### Response
 
 ```json
 {
@@ -223,7 +229,7 @@
 }
 ```
 
-### Error Response
+#### Error Response
 
 ```json
 {
@@ -233,25 +239,26 @@
 }
 ```
 
-### Error Codes
+#### Error Codes
 
 | No. | Name   | HTTP Status | Description   |
 |-----|--------|-------------|---------------|
 | 1.  | CAT000 | 500         | Unknown error |
 
-## Deactivate category
+### Deactivate category
 
-### This API is used to deactivate category
+> [!NOTE]
+> This API is used to deactivate category
 
 `[POST] /api/v1/category/{category_id}`
 
-### Request
+#### Request
 
 | No. | Name        | Required | Data Type | Description                              |
 |-----|-------------|----------|-----------|------------------------------------------|
 | 1.  | category_id | TRUE     | Integer   | Category ID that wants to be deactivated |
 
-### Response
+#### Response
 
 ```json
 {
@@ -264,7 +271,7 @@
 }
 ```
 
-### Error Response
+#### Error Response
 
 ```json
 {
@@ -274,30 +281,30 @@
 }
 ```
 
-### Error Codes
+#### Error Codes
 
 | No. | Name   | HTTP Status | Description                      |
 |-----|--------|-------------|----------------------------------|
 | 1.  | CAT000 | 500         | Unknown error                    |
 | 2.  | CAT500 | 400         | Bad request : category not found |
 
-# Product API
+## Product API
 
-## Product Properties
+### Product Properties
 
-### Products
+#### Products
 
 | No. | Name        | Data Type | Description               |
 |-----|-------------|-----------|---------------------------|
 | 1.  | product_id  | UUID      | Product's ID              |
-| 2.  | name        | String    | Product's name            |
-| 3.  | category_id | UUID      | Product's category ID     |
+| 2.  | category_id | UUID      | Product's category ID     |
+| 3.  | name        | String    | Product's name            |
 | 4.  | image       | String    | Product's image           |
 | 5.  | created_at  | Timestamp | Time product created      |
 | 6.  | updated_at  | Timestamp | Time product last updated |
 | 7.  | deleted_at  | Timestamp | Time product deleted      |
 
-### Variants
+#### Variants
 
 | No. | Name       | Data Type | Description                                                                                                 |
 |-----|------------|-----------|-------------------------------------------------------------------------------------------------------------|
@@ -311,24 +318,25 @@
 | 8.  | updated_at | Timestamp | Time variant last updated                                                                                   |
 | 9.  | deleted_at | Timestamp | Time variant deleted                                                                                        |
 
-## Get product list
+### Get product list
 
-### This API is used to get product list. Returns 200 OK even though product is empty.
-### Store API response to Redis with request as key. Expiry 1 day
+> [!NOTE]
+> This API is used to get product list. Returns 200 OK even though product is empty.
+> Store API response to Redis with request as key. Expiry 1 day
 
 `[GET] /api/v1/product`
 
-### Request
+#### Request
 
 | No. | Name         | Required | Data Type     | Description                         |
 |-----|--------------|----------|---------------|-------------------------------------|
 | 1.  | page         | FALSE    | Integer       | Page of products (Default 1)        |
 | 2.  | limit        | FALSE    | Integer       | Limit item to retrieve (Default 20) |
-| 3.  | name         | FALSE    | String        | Search by product name              |
-| 4.  | category_ids | FALSE    | Array of UUID | Filter by category ids              |
+| 3.  | category_ids | FALSE    | Array of UUID | Filter by category ids              |
+| 4.  | name         | FALSE    | String        | Search by product name              |
 | 5.  | is_active    | TRUE     | Boolean       | Filter by active products           |
 
-### Response
+#### Response
 
 ```json
 {
@@ -336,8 +344,8 @@
     "products": [
       {
         "product_id": "",
-        "name": "",
         "category_id": "",
+        "name": "",
         "image": "",
         "is_active": true,
         "created_at": "2023-12-31 00:00:00",
@@ -355,7 +363,7 @@
 }
 ```
 
-### Error Response
+#### Error Response
 
 ```json
 {
@@ -365,25 +373,26 @@
 }
 ```
 
-### Error Codes
+#### Error Codes
 
 | No. | Name   | HTTP Status | Description   |
 |-----|--------|-------------|---------------|
 | 1.  | PRD000 | 500         | Unknown error |
 
-## Get product variants by IDs
+### Get product variants by ID
 
-### This API is used to get product variants by IDs
+> [!NOTE]
+> This API is used to get product variants by ID
 
 `[GET] /api/v1/product/{product_id}`
 
-### Request
+#### Request
 
 | No. | Name       | Required | Data Type | Description          |
 |-----|------------|----------|-----------|----------------------|
 | 1.  | product_id | TRUE     | UUID      | Search by product id |
 
-### Response
+#### Response
 
 ```json
 {
@@ -409,7 +418,7 @@
 }
 ```
 
-### Error Response
+#### Error Response
 
 ```json
 {
@@ -419,20 +428,21 @@
 }
 ```
 
-### Error Codes
+#### Error Codes
 
 | No. | Name   | HTTP Status | Description       |
 |-----|--------|-------------|-------------------|
 | 1.  | PRD000 | 500         | Unknown error     |
 | 2.  | PRD200 | 404         | Product not found |
 
-## Create product
+### Create product
 
-### This API is used to create product
+> [!NOTE]
+> This API is used to create product
 
 `[POST] /api/v1/product`
 
-### Request
+#### Request
 
 | No. | Name                | Required | Data Type | Description                                           |
 |-----|---------------------|----------|-----------|-------------------------------------------------------|
@@ -467,7 +477,7 @@
 }
 ```
 
-### Response
+#### Response
 
 ```json
 {
@@ -501,7 +511,7 @@
 }
 ```
 
-### Error Response
+#### Error Response
 
 ```json
 {
@@ -511,7 +521,7 @@
 }
 ```
 
-### Error Codes
+#### Error Codes
 
 | No. | Name   | HTTP Status | Description                          |
 |-----|--------|-------------|--------------------------------------|
@@ -520,13 +530,14 @@
 | 3.  | PRD301 | 400         | Bad request : product already exists |
 | 4.  | PRD302 | 400         | Bad request : invalid image          |
 
-## Update Product
+### Update Product
 
-### This API is used to update product
+> [!NOTE]
+> This API is used to update product
 
 `[PATCH] /api/v1/product/{product_id}`
 
-### Request
+#### Request
 
 | No. | Name                | Type | Required | Data Type | Description                                           |
 |-----|---------------------|------|----------|-----------|-------------------------------------------------------|
@@ -562,14 +573,14 @@
 }
 ```
 
-### Response
+#### Response
 
 ```json
 {
   "data": {
     "product_id": "",
-    "name": "",
     "category_id": "",
+    "name": "",
     "image": "",
     "variants": [
       {
@@ -596,7 +607,7 @@
 }
 ```
 
-### Error Response
+#### Error Response
 
 ```json
 {
@@ -606,7 +617,7 @@
 }
 ```
 
-### Error Codes
+#### Error Codes
 
 | No. | Name   | HTTP Status | Description                          |
 |-----|--------|-------------|--------------------------------------|
@@ -615,19 +626,20 @@
 | 3.  | PRD401 | 400         | Bad request : product already exists |
 | 4.  | PRD402 | 400         | Bad request : invalid image          |
 
-# External API
+## External API
 
-## Authenticate
+### Authenticate
 
-### This API is used to authenticate user based on given client id and secret
+> [!NOTE]
+> This API is used to authenticate user based on given client id and secret
 
 `[POST] /api/v1/authenticate`
 
-### Request
+#### Request
 
 `Header : Authorization Basic base64(clientId:clientSecret)`
 
-### Response
+#### Response
 ```json
 {
   "token": "",
@@ -636,7 +648,7 @@
 }
 ```
 
-# Notes
+## Notes
 
 1. Basically there are 3 crucial services:
 - Product service (which documented here)
@@ -650,3 +662,108 @@
 
 3. For message broker implementation, can use this architecture to make sure all messages consumed
 - https://microservices.io/patterns/data/transactional-outbox.html
+
+---
+
+# Database Design
+
+## Queries
+
+### ERD
+[![ERD](https://i.ibb.co/MfnxHPL/Screenshot-2024-05-02-at-10-41-04.png)]
+
+### Table creation
+```sql
+CREATE TABLE categories
+(
+  category_id         UUID NOT NULL,
+  parent_category_id  UUID,
+  name                TEXT NOT NULL,
+  created_at          TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at          TIMESTAMP WITH TIME ZONE,
+  deleted_at          TIMESTAMP WITH TIME ZONE,
+  deleted             BOOLEAN DEFAULT FALSE,
+  
+  CONSTRAINT categories_category_id_pkey PRIMARY KEY (id),
+  CONSTRAINT categories_parent_category_id_fkey FOREIGN KEY (parent_category_id) REFERENCES categories(category_id)
+);
+CREATE INDEX IF NOT EXISTS categories__index_query_by_name ON categories (name);
+
+CREATE TABLE products
+(
+  product_id  UUID NOT NULL,
+  category_id UUID NOT NULL,
+  name        TEXT NOT NULL,
+  image       TEXT,
+  is_active   BOOLEAN DEFAULT FALSE,
+  created_at  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at  TIMESTAMP WITH TIME ZONE,
+  deleted_at  TIMESTAMP WITH TIME ZONE,
+  deleted     BOOLEAN DEFAULT FALSE,
+
+  CONSTRAINT products_product_id_pkey PRIMARY KEY (product_id),
+  CONSTRAINT products_category_id_fkey FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);
+CREATE INDEX IF NOT EXISTS products__index_query_by_name ON products (name);
+
+CREATE TABLE variants
+(
+  variant_id  UUID NOT NULL,
+  product_id  UUID NOT NULL,
+  sku         TEXT NOT NULL,
+  stock       INTEGER DEFAULT 0,
+  price       FLOAT DEFAULT 0,
+  image       TEXT,
+  attributes  JSONB,
+  created_at  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at  TIMESTAMP WITH TIME ZONE,
+  deleted_at  TIMESTAMP WITH TIME ZONE,
+  deleted     BOOLEAN DEFAULT FALSE,
+
+  CONSTRAINT variants_variant_id_pkey PRIMARY KEY (variant_id),
+  CONSTRAINT variants_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+CREATE UNIQUE INDEX IF NOT EXISTS unique_products__sku ON products (sku);
+```
+
+### [Get category list](#get-category-list)
+```sql
+SELECT category_id, parent_category_id, name, created_at, updated_at, deleted_at FROM categories LIMIT 20 OFFSET 0
+```
+
+### [Create category](#create-category)
+```sql
+INSERT INTO categories (parent_category_id, name) VALUES (?, ?)
+```
+
+### [Update category](#update-category)
+```sql
+UPDATE categories SET parent_category_id = ?, name = ?, updated_at = NOW() WHERE id = ?
+```
+
+### [Deactivate category](#deactivate-category)
+```sql
+UPDATE categories SET updated_at = NOW(), deleted_at = NOW(), deleted = TRUE WHERE id = ?
+```
+
+### [Get product list](#get-product-list)
+```sql
+SELECT product_id, category_id, name, image, is_active, created_at, updated_at, deleted_at FROM products LIMIT 20 OFFSET 0
+```
+
+### [Get variant](#get-product-variants-by-id)
+```sql
+SELECT variant_id, sku, stock, price, image, attributes, created_at, updated_at, deleted_at FROM variants WHERE product_id = ?
+```
+
+### [Create product](#create-product)
+```sql
+INSERT INTO products (category_id, name, image, is_active) VALUES (?, ?, ?, ?)
+INSERT INTO variants (product_id, sku, stock, price, image, attributes) VALUES (?, ?, ?, ?, ?, ?)
+```
+
+### [Update product](#update-product)
+```sql
+UPDATE products SET category_id = ?, name = ?, image = ?, is_active = ?, updated_at = NOW() WHERE product_id = ?
+UPDATE variants SET sku = ?, stock = ?, price = ?, image = ?, attributes = ?, updated_at = NOW() WHERE variant_id = ?
+```
