@@ -667,17 +667,14 @@
 
 # System Design
 
-### Diagram
 [![System Design](https://i.ibb.co/txPwv0w/Screenshot-2024-05-02-at-13-14-26.png)]
 
 # Database Design
 
-## Queries
-
-### ERD
+## ERD
 [![ERD](https://i.ibb.co/MfnxHPL/Screenshot-2024-05-02-at-10-41-04.png)]
 
-### Table creation
+## Table
 ```sql
 CREATE TABLE categories
 (
@@ -730,6 +727,8 @@ CREATE TABLE variants
 );
 CREATE UNIQUE INDEX IF NOT EXISTS unique_products__sku ON products (sku);
 ```
+
+## Queries
 
 ### [Get category list](#get-category-list)
 ```sql
