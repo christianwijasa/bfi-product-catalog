@@ -667,7 +667,28 @@
 
 # System Design
 
-[![System Design](https://i.ibb.co/txPwv0w/Screenshot-2024-05-02-at-13-14-26.png)]
+[![Monolyth](https://i.ibb.co/txPwv0w/Screenshot-2024-05-02-at-13-14-26.png)]
+
+The system is designed in monolyth way to handle product catalog business process on early stage.
+
+After the business running pretty well and increased in user number, we could prepare the microservices arch like below
+
+[![Microservices](https://i.ibb.co/Jjd6DDV/Screenshot-2024-05-02-at-15-41-46.png)]
+
+In both design, we use several technologies:
+
+1. Redis
+- used to retrieve product catalog data cache that updated every write process so we can lower the use of query memory from Postgres and speed up the process to retrieve the data
+- if the data in Redis expired, select query will be used to refresh the data
+
+2. Kafka
+- to put bulk process in queue
+- ability to add multi streamline since we need to handle multi write process from several tenants in marketplace
+
+3. PostgreSQL
+- used for relational data since the data we're using need ease of use to handle related data such as products in specific category
+
+---
 
 # Database Design
 
