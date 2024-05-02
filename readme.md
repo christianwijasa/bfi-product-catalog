@@ -665,6 +665,11 @@
 
 ---
 
+# System Design
+
+### Diagram
+[![System Design](https://i.ibb.co/txPwv0w/Screenshot-2024-05-02-at-13-14-26.png)]
+
 # Database Design
 
 ## Queries
